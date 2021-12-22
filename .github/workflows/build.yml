@@ -1,0 +1,24 @@
+name: A workflow to build the server on Docker
+on: [push, pull_request]
+    
+jobs:
+
+  build:
+  
+    name: Build App
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+      -name: Setup Go1.16
+      uses: actions/setup-go@v2
+      with:
+        go-version: '1.16'
+      run: go version
+      
+      -name: Checkout repository code
+       uses: actions/checkout@v2
+       
+      -name: Build app
+      run: go build romanServer/
